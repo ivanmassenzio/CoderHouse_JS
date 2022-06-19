@@ -13,7 +13,7 @@ do {
         alert("Son las: "+ time.getHours())
     }
     if (opcion == 2){
-        alert("El dia es: "+ time.getDay())
+        alert("El mes es: "+ time.getDay())
     }
     if (opcion == 3){
         alert("El año es: "+ time.getFullYear())
