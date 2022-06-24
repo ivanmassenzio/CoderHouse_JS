@@ -19,11 +19,8 @@ function mostarMenu() {
 }
 
 
-// Funcion para calular el monto a pagar
-function calcularMonto(precio, cuotas) {
-    return precio / cuotas    
-}
-
+// Arrow Function para calular el monto a pagar
+let calcularMonto = (precio, cuotas) => precio / cuotas    
 
 
 let opcionSeleccionada = mostarMenu()
