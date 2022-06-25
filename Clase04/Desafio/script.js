@@ -1,73 +1,50 @@
-// Objetos de articulos
-let mate = {
-    precio: 300
+// Constructor de articulos
+function Articulo(nombre, precio){
+    this.nombre = nombre
+    this.precio = precio
+    // Arrow Function para calular el monto a pagar
+    this.calcularMonto = (precio, cuotas) => precio / cuotas
 }
 
-let termo = {
-    precio: 500
-}
+// Creacion de 3 articulos
+const mate = new Articulo("Mate", 300)
+const termo = new Articulo("Termo", 500)
+const mochila = new Articulo("Mochila", 1500)
 
-let mochila = {
-    precio: 1500
-}
 
 // Menu principal
-function mostarMenu() {
+let mostarMenu = () => {
     let opcion = parseInt(prompt("Bienvenido, seleccione un articulo (9 para salir)\n 1 Mate\n 2 Termo\n 3 Mochila"))
     return opcion
-
 }
 
-
-// Arrow Function para calular el monto a pagar
-let calcularMonto = (precio, cuotas) => precio / cuotas    
-
+let menuPago = (articulo) => {
+    let opcionPago = parseInt(prompt(`El articulo ${articulo.nombre} cuesta ${articulo.precio}, en cuantas cuotas quiere pagarlo? (1-3)`))
+    switch (opcionPago){
+        case 1:
+        case 2:
+        case 3:
+            let cuotas = articulo.calcularMonto(articulo.precio, opcionPago)
+            alert("Serian " + opcionPago + " cuotas de " + cuotas)
+            break
+        default:
+            alert("cantidad de cuotas invalidas")
+            break
+    }    
+}
 
 let opcionSeleccionada = mostarMenu()
 
 while (opcionSeleccionada !== 9) {
     let opcionPago = 0
     if (opcionSeleccionada == 1) {
-        opcionPago = parseInt(prompt("El Mate cuesta " + mate.precio + ", en cuantas cuotas quiere pagarlo? (1-3)"))
-        switch (opcionPago){
-            case 1:
-            case 2:
-            case 3:
-                let cuotas = calcularMonto(mate.precio, opcionPago)
-                alert("Serian " + opcionPago + " cuotas de " + cuotas)
-                break
-            default:
-                alert("cantidad de cuotas invalidas")
-                break
-        }
+        menuPago(mate)       
     }
     if (opcionSeleccionada == 2) {
-        opcionPago = parseInt(prompt("El Termo cuesta " + termo.precio + ", en cuantas cuotas quiere pagarlo? (1-3)"))
-        switch (opcionPago){
-            case 1:
-            case 2:
-            case 3:
-                let cuotas = calcularMonto(termo.precio, opcionPago)
-                alert("Serian " + opcionPago + " cuotas de " + cuotas)
-                break
-            default:
-                alert("cantidad de cuotas invalidas")
-                break
-        }        
+        menuPago(termo)
     }
     if (opcionSeleccionada == 3) {
-        opcionPago = parseInt(prompt("La Mochila cuesta " + mochila.precio + ", en cuantas cuotas quiere pagarlo? (1-3)"))
-        switch (opcionPago){
-            case 1:
-            case 2:
-            case 3:
-                let cuotas = calcularMonto(mochila.precio, opcionPago)
-                alert("Serian " + opcionPago + " cuotas de " + cuotas)
-                break
-            default:
-                alert("cantidad de cuotas invalidas")
-                break
-        }        
+        menuPago(mochila)
     }
     opcionSeleccionada = mostarMenu()
 }
